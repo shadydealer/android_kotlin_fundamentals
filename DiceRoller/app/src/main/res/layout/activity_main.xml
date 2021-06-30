@@ -9,31 +9,43 @@
     tools:context=".MainActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/dice_to_roll_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical"
-        tools:context=".MainActivity">
-        <ImageView
-            android:id="@+id/dice_image_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/empty_dice" />
-
-        <ImageView
-            android:id="@+id/dice_image_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/empty_dice" />
-    </LinearLayout>
+        android:hint="@string/how_many_dice_to_roll"
+        android:inputType="number"
+        android:importantForAutofill="no"
+        style="@style/dice_to_roll_count_style"/>
 
     <Button
         android:id="@+id/roll_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/roll_label"/>
+        android:text="@string/roll_label" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            tools:context=".MainActivity">
+            <ImageView
+                android:id="@+id/dice_image_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/empty_dice"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/dice_image_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/empty_dice"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
