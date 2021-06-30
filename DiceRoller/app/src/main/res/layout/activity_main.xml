@@ -5,19 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_gravity="center_vertical"
-    tools:context=".MainActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/dice_to_roll_count"
+        style="@style/dice_to_roll_count_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/how_many_dice_to_roll"
-        android:inputType="number"
         android:importantForAutofill="no"
-        style="@style/dice_to_roll_count_style"/>
-
+        android:inputType="number" />
     <Button
         android:id="@+id/roll_button"
         android:layout_width="wrap_content"
@@ -26,26 +23,14 @@
         android:text="@string/roll_label" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
         <LinearLayout
+            android:id="@+id/dice_images_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:context=".MainActivity">
-            <ImageView
-                android:id="@+id/dice_image_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/empty_dice"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/dice_image_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/empty_dice"
-                tools:ignore="ContentDescription" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
