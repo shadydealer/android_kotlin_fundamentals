@@ -1,5 +1,6 @@
 package com.example.colormyviews
 
+import android.databinding.DataBindingUtil
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
@@ -7,12 +8,14 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.content.res.ResourcesCompat
 import android.view.View
+import com.example.colormyviews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var backgroundColors: Array<Drawable?>
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         backgroundColors = arrayOf(
             ResourcesCompat.getDrawable(resources, R.color.my_green, null),
             ResourcesCompat.getDrawable(resources, R.color.my_red, null),
@@ -26,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListeners() {
 
-        val layout = findViewById<ConstraintLayout>(R.id.constraint_layout)
+        val layout = binding.constraintLayout
 
         val childrenCount: Int = layout.childCount
         for (c in 0 until childrenCount) {
