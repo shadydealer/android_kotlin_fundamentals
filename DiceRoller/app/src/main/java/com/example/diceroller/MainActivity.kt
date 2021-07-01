@@ -10,28 +10,22 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.res.ResourcesCompat
+import androidx.databinding.DataBindingUtil
+import com.example.diceroller.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val start = 1
     private val end: Int = 6
     private val resourcePathPrefix: String = "drawable/dice_"
-
-    private lateinit var rollButton: Button
-    private lateinit var diceImageLinearLayout: LinearLayout
+    private lateinit var binding: ActivityMainBinding
     private lateinit var diceImages: Array<ImageView>
-    private lateinit var diceToRollCountInput: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        rollButton = findViewById(R.id.roll_button)
-        rollButton.setOnClickListener { rollDice(it) }
-
-        diceImageLinearLayout = findViewById(R.id.dice_images_layout)
-
-        diceToRollCountInput = findViewById(R.id.dice_to_roll_count)
-        diceToRollCountInput.setOnEditorActionListener {v, actionId, _ ->
+        binding.rollButton.setOnClickListener { rollDice(it) }
+        binding.diceToRollCount.setOnEditorActionListener {v, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_DONE) {
                 rollDice(v)
                 true
@@ -42,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice(view: View) {
-        diceImageLinearLayout.removeAllViews()
+        binding.diceImagesLayout.removeAllViews()
         generateDiceImages()
         for (diceImage in diceImages) {
             val randomNumber: Int = (start..end).random()
@@ -76,10 +70,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun generateDiceImages() {
-        val count: Int = diceToRollCountInput.text.toString().toIntOrNull() ?: 0
+        val count: Int = binding.diceToRollCount.text.toString().toIntOrNull() ?: 0
         diceImages = Array(count) {
             val imageView: ImageView = buildDiceImage()
-            diceImageLinearLayout.addView(imageView)
+            binding.diceImagesLayout.addView(imageView)
             imageView
         }
     }
